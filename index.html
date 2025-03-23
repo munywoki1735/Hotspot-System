@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotspot Access Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="landing-container">
+        <div class="info-section">
+            <h2>How to purchase:</h2>
+            <ol>
+                <li>Tap the package you want to purchase</li>
+                <li>Enter your Mobile Money phone number</li>
+                <li>Click subscribe</li>
+                <li>Enter your Mobile Money PIN in the prompt</li>
+                <li>Wait a few seconds to be connected</li>
+                <li>If not connected, contact customer care: <strong>0708461931</strong></li>
+                <li>Already subscribed? Click to login and input your <strong>USERNAME and PASSWORD</strong></li>
+            </ol>
+        </div>
+
+        <div class="package-selection">
+            <div class="package-btn" onclick="showPaymentForm('Test Net @ Ksh 1')">Test Net @ Ksh 1 <br> 3 Minutes</div>
+            <div class="package-btn" onclick="showPaymentForm('1 HOUR @ Ksh 10')">1 HOUR @ Ksh 10 <br> 1 Hour</div>
+            <div class="package-btn" onclick="showPaymentForm('1 Day @ Ksh 22')">1 Day @ Ksh 22</div>
+            <div class="package-btn" onclick="showPaymentForm('2 Device Package 1 Day @ Ksh 44')">2 Device Package 1 Day @ Ksh 44</div>
+            <div class="package-btn" onclick="showPaymentForm('5 Days @ Ksh 78')">5 Days @ Ksh 78</div>
+            <div class="package-btn" onclick="showPaymentForm('1 WEEK @ Ksh 109')">1 WEEK @ Ksh 109</div>
+            <div class="package-btn" onclick="showPaymentForm('2 Device Package 5 Days @ Ksh 156')">2 Device Package 5 Days @ Ksh 156</div>
+            <div class="package-btn" onclick="showPaymentForm('One Month @ Ksh 450')">One Month @ Ksh 450</div>
+        </div>
+    </div>
+
+    <!-- Payment Form Modal -->
+    <div id="payment-modal" class="payment-modal">
+        <div class="payment-content">
+            <h3>Enter your Mobile Money (M-Pesa) Number</h3>
+            <form id="payment-form">
+                <input type="text" id="mpesa-number" placeholder="Enter Kenyan Phone Number" required>
+                <button type="submit">Pay Now</button>
+            </form>
+            <button onclick="closePaymentForm()">Cancel</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
