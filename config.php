@@ -1,11 +1,13 @@
 <?php
 $servername = "localhost";
-$username = "root";  // XAMPP default username
-$password = "";      // XAMPP default password (empty)
-$dbname = "hotspot_system_db"; // The name of your database
+$username = "root";   // Default username in XAMPP
+$password = "";       // Default password in XAMPP (empty)
+$dbname = "hotspot_system_db";  // The name of your database
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
