@@ -22,28 +22,29 @@
         </div>
 
         <div class="package-selection">
-            <div class="package-btn" onclick="showPaymentForm('Test Net @ Ksh 1')">Test Net @ Ksh 1 <br> 3 Minutes</div>
-            <div class="package-btn" onclick="showPaymentForm('1 HOUR @ Ksh 10')">1 HOUR @ Ksh 10 <br> 1 Hour</div>
-            <div class="package-btn" onclick="showPaymentForm('1 Day @ Ksh 22')">1 Day @ Ksh 22</div>
-            <div class="package-btn" onclick="showPaymentForm('2 Device Package 1 Day @ Ksh 44')">2 Device Package 1 Day @ Ksh 44</div>
-            <div class="package-btn" onclick="showPaymentForm('5 Days @ Ksh 78')">5 Days @ Ksh 78</div>
-            <div class="package-btn" onclick="showPaymentForm('1 WEEK @ Ksh 109')">1 WEEK @ Ksh 109</div>
-            <div class="package-btn" onclick="showPaymentForm('2 Device Package 5 Days @ Ksh 156')">2 Device Package 5 Days @ Ksh 156</div>
-            <div class="package-btn" onclick="showPaymentForm('One Month @ Ksh 450')">One Month @ Ksh 450</div>
+            <div class="package-btn" onclick="selectPackage('Test Net @ Ksh 1', 1, 1)">Test Net @ Ksh 1 <br> 3 Minutes</div>
+            <div class="package-btn" onclick="selectPackage('1 HOUR @ Ksh 10', 10, 10)">1 HOUR @ Ksh 10 <br> 1 Hour</div>
+            <div class="package-btn" onclick="selectPackage('1 Day @ Ksh 22', 22, 22)">1 Day @ Ksh 22</div>
+            <div class="package-btn" onclick="selectPackage('2 Device Package 1 Day @ Ksh 44', 44, 44)">2 Device Package 1 Day @ Ksh 44</div>
+            <div class="package-btn" onclick="selectPackage('5 Days @ Ksh 78', 78, 78)">5 Days @ Ksh 78</div>
+            <div class="package-btn" onclick="selectPackage('1 WEEK @ Ksh 109', 109, 109)">1 WEEK @ Ksh 109</div>
+            <div class="package-btn" onclick="selectPackage('2 Device Package 5 Days @ Ksh 156', 156, 156)">2 Device Package 5 Days @ Ksh 156</div>
+            <div class="package-btn" onclick="selectPackage('One Month @ Ksh 450', 450, 450)">One Month @ Ksh 450</div>
         </div>
 
-        <!-- Login Button -->
-        <div class="login-section">
-            <button class="login-btn" onclick="window.location.href='login.html'">Click to login</button>
-        </div>
     </div>
 
-    <!-- Payment Form Modal -->
-    <div id="payment-modal" class="payment-modal">
+    <!-- Package Confirmation Modal -->
+    <div id="confirmation-modal" class="payment-modal" style="display: none;">
         <div class="payment-content">
-            <h3>Enter your Mobile Money (M-Pesa) Number</h3>
-            <form id="payment-form">
-                <input type="text" id="mpesa-number" placeholder="Enter Kenyan Phone Number" required>
+            <h3>You have selected: <span id="selected-package"></span></h3>
+            <p>Enter your Mobile Money (M-Pesa) Number to proceed with the payment:</p>
+            <form id="payment-form" action="payment.php" method="POST">
+                <input type="hidden" id="package-name" name="package_name">
+                <input type="hidden" id="package-price" name="package_price">
+                <input type="hidden" id="package-id" name="package_id"> <!-- Hidden field for package ID -->
+
+                <input type="text" id="mpesa-number" name="phone_number" placeholder="Enter Kenyan Phone Number" required>
                 <button type="submit">Pay Now</button>
             </form>
             <button onclick="closePaymentForm()">Cancel</button>
@@ -51,5 +52,26 @@
     </div>
 
     <script src="scripts.js"></script>
+
+    <script>
+        // Store the selected package name and ID
+        function selectPackage(packageName, packagePrice, packageId) {
+            // Set the hidden fields with the selected package details
+            document.getElementById("package-name").value = packageName;
+            document.getElementById("package-price").value = packagePrice;
+            document.getElementById("package-id").value = packageId; // Set the selected package ID
+
+            // Display the selected package name in the modal
+            document.getElementById("selected-package").textContent = packageName;
+
+            // Open the confirmation modal
+            document.getElementById("confirmation-modal").style.display = "flex";
+        }
+
+        // Close the confirmation modal
+        function closePaymentForm() {
+            document.getElementById("confirmation-modal").style.display = "none";
+        }
+    </script>
 </body>
 </html>
